@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    paddingTop: 50,
+    paddingTop: 200,
     paddingBottom: 20,
   },
 
@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    width: 90,
-    height: 90,
+    width: 120,
+    height: 120,
     resizeMode: 'contain',
-    marginBottom: 20,
+    marginBottom: 25,
   },
 
   title: {
