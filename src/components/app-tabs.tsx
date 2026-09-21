@@ -7,6 +7,7 @@ export default function AppTabs() {
 
   const tabs = [
     { name: 'index', label: 'Início', icon: '⌂' },
+    { name: 'jogar', label: 'Jogar', icon: '🎮' },
     { name: 'explore', label: 'Explorar', icon: '⌕' },
   ];
 
@@ -24,6 +25,8 @@ export default function AppTabs() {
             onPress={() => {
               if (tab.name === 'index') {
                 router.push('/');
+              } else if (tab.name === 'jogar') {
+                router.push('/jogar');
               } else {
                 router.push('/explore');
               }
