@@ -20,7 +20,7 @@ export default function Store() {
       image: require('@/assets/images/gta.png'),
       title: 'Grand Theft Auto VI: Ultimate Edition',
       description:
-        'A história acompanha os protagonistas Lucia Caminos e Jason Duval, um casal de criminosos no estilo "Bonnie e Clyde" envolvidos em uma conspiração no estado fictício de Leonida.',
+        'A história acompanha os protagonistas Lucia Caminos e Jason Duval, um casal de criminosos envolvidos em uma conspiração no estado fictício de Leonida.',
       price: 'R$ 549,90',
     },
     {
@@ -54,7 +54,10 @@ export default function Store() {
   ];
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={styles.title}>PS Store</Text>
 
       <View style={styles.tabs}>
@@ -79,16 +82,23 @@ export default function Store() {
 
       {games.map((game, index) => (
         <View style={styles.card} key={index}>
-          <Image source={game.image} style={styles.gameImage} />
+          <Image
+            source={game.image}
+            style={styles.gameImage}
+          />
 
           <View style={styles.gameInfo}>
-            <Text style={styles.gameTitle}>{game.title}</Text>
+            <Text style={styles.gameTitle}>
+              {game.title}
+            </Text>
 
             <Text style={styles.description}>
               {game.description}
             </Text>
 
-            <Text style={styles.price}>{game.price}</Text>
+            <Text style={styles.price}>
+              {game.price}
+            </Text>
           </View>
         </View>
       ))}
@@ -99,7 +109,7 @@ export default function Store() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#000000',
     padding: 20,
     paddingTop: 40,
   },
@@ -107,7 +117,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 20,
   },
 
@@ -120,7 +130,7 @@ const styles = StyleSheet.create({
   activeTab: {
     flex: 1,
     height: 42,
-    backgroundColor: '#000000',
+    backgroundColor: '#00439c',
     borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
@@ -135,16 +145,16 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     height: 42,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#cccccc',
+    borderColor: '#333333',
   },
 
   tabText: {
-    color: '#000000',
+    color: '#ffffff',
     fontSize: 12,
     fontWeight: '600',
   },
@@ -152,12 +162,12 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 15,
   },
 
   card: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 20,
@@ -176,13 +186,13 @@ const styles = StyleSheet.create({
   gameTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 8,
   },
 
   description: {
     fontSize: 14,
-    color: '#666666',
+    color: '#cccccc',
     lineHeight: 20,
     marginBottom: 12,
   },
@@ -190,6 +200,6 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
   },
 });

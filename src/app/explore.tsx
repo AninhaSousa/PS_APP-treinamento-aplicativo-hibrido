@@ -19,13 +19,16 @@ export default function Explorar() {
   ];
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={styles.title}>Explorar</Text>
 
       <TextInput
         style={styles.search}
         placeholder="Pesquisar"
-        placeholderTextColor="#777777"
+        placeholderTextColor="#cccccc"
       />
 
       <View style={styles.buttons}>
@@ -38,12 +41,15 @@ export default function Explorar() {
         </Pressable>
       </View>
 
-      <Text style={styles.sectionTitle}>Tendências</Text>
+      <Text style={styles.sectionTitle}>Jogos</Text>
 
       <View style={styles.gamesGrid}>
         {games.map((game, index) => (
           <View style={styles.gameCard} key={index}>
-            <Image source={game} style={styles.gameImage} />
+            <Image
+              source={game}
+              style={styles.gameImage}
+            />
           </View>
         ))}
       </View>
@@ -54,7 +60,7 @@ export default function Explorar() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#000000',
     padding: 20,
     paddingTop: 40,
   },
@@ -62,20 +68,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 20,
   },
 
   search: {
     height: 45,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 8,
     paddingHorizontal: 15,
     fontSize: 16,
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: '#dddddd',
+    borderColor: '#333333',
   },
 
   buttons: {
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
   activeButton: {
     flex: 1,
     height: 42,
-    backgroundColor: '#000000',
+    backgroundColor: '#00439c',
     borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
@@ -102,16 +108,16 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     height: 42,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#cccccc',
+    borderColor: '#333333',
   },
 
   buttonText: {
-    color: '#000000',
+    color: '#ffffff',
     fontSize: 15,
     fontWeight: '600',
   },
@@ -119,7 +125,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 15,
   },
 
@@ -132,7 +138,7 @@ const styles = StyleSheet.create({
 
   gameCard: {
     width: '48%',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 10,
     overflow: 'hidden',
     marginBottom: 15,

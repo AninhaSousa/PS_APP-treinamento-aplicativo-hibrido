@@ -31,7 +31,10 @@ export default function Noticias() {
   ];
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={styles.title}>Notícias</Text>
 
       <View style={styles.tabs}>
@@ -48,10 +51,15 @@ export default function Noticias() {
 
       {news.map((item, index) => (
         <View style={styles.newsCard} key={index}>
-          <Image source={item.image} style={styles.newsImage} />
+          <Image
+            source={item.image}
+            style={styles.newsImage}
+          />
 
           <View style={styles.newsInfo}>
-            <Text style={styles.newsTitle}>{item.title}</Text>
+            <Text style={styles.newsTitle}>
+              {item.title}
+            </Text>
 
             <Text style={styles.newsDescription}>
               {item.description}
@@ -66,7 +74,7 @@ export default function Noticias() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#000000',
     padding: 20,
     paddingTop: 40,
   },
@@ -74,7 +82,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 20,
   },
 
@@ -87,7 +95,7 @@ const styles = StyleSheet.create({
   activeTab: {
     flex: 1,
     height: 42,
-    backgroundColor: '#000000',
+    backgroundColor: '#00439c',
     borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
@@ -102,16 +110,16 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     height: 42,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#cccccc',
+    borderColor: '#333333',
   },
 
   tabText: {
-    color: '#000000',
+    color: '#ffffff',
     fontSize: 13,
     fontWeight: '600',
   },
@@ -119,12 +127,12 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 15,
   },
 
   newsCard: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 25,
@@ -143,13 +151,13 @@ const styles = StyleSheet.create({
   newsTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 8,
   },
 
   newsDescription: {
     fontSize: 14,
-    color: '#666666',
+    color: '#cccccc',
     lineHeight: 20,
   },
 });

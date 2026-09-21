@@ -15,7 +15,10 @@ export default function Biblioteca() {
   ];
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={styles.title}>Biblioteca</Text>
 
       <View style={styles.topButtons}>
@@ -41,7 +44,10 @@ export default function Biblioteca() {
       <View style={styles.gamesGrid}>
         {games.map((game, index) => (
           <View style={styles.gameCard} key={index}>
-            <Image source={game} style={styles.gameImage} />
+            <Image
+              source={game}
+              style={styles.gameImage}
+            />
           </View>
         ))}
       </View>
@@ -52,7 +58,7 @@ export default function Biblioteca() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#000000',
     padding: 20,
     paddingTop: 40,
   },
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 25,
   },
 
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
   activeTopButton: {
     flex: 1,
     height: 45,
-    backgroundColor: '#000000',
+    backgroundColor: '#00439c',
     borderRadius: 22,
     justifyContent: 'center',
     alignItems: 'center',
@@ -88,16 +94,16 @@ const styles = StyleSheet.create({
   topButton: {
     flex: 1,
     height: 45,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 22,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#cccccc',
+    borderColor: '#333333',
   },
 
   topButtonText: {
-    color: '#000000',
+    color: '#ffffff',
     fontSize: 15,
     fontWeight: '600',
   },
@@ -111,11 +117,11 @@ const styles = StyleSheet.create({
   activeSubButton: {
     paddingBottom: 8,
     borderBottomWidth: 2,
-    borderBottomColor: '#000000',
+    borderBottomColor: '#00439c',
   },
 
   activeSubButtonText: {
-    color: '#000000',
+    color: '#ffffff',
     fontSize: 15,
     fontWeight: '600',
   },
@@ -125,7 +131,7 @@ const styles = StyleSheet.create({
   },
 
   subButtonText: {
-    color: '#777777',
+    color: '#cccccc',
     fontSize: 15,
   },
 
@@ -138,7 +144,7 @@ const styles = StyleSheet.create({
 
   gameCard: {
     width: '48%',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 10,
     overflow: 'hidden',
     marginBottom: 15,

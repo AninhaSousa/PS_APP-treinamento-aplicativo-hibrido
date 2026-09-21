@@ -16,6 +16,7 @@ export default function Jogar() {
 
       <Text style={styles.sectionTitle}>Jogados recentemente</Text>
 
+      {/* Wolverine */}
       <View style={styles.gameCard}>
         <Image
           source={require('@/assets/images/wolverine.png')}
@@ -25,7 +26,9 @@ export default function Jogar() {
         <View style={styles.gameInfo}>
           <Text style={styles.gameTitle}>Marvel’s Wolverine</Text>
 
-          <Text style={styles.gameSubtitle}>Jogado recentemente</Text>
+          <Text style={styles.gameSubtitle}>
+            Jogado recentemente
+          </Text>
 
           <View style={styles.trophies}>
             <Text style={styles.trophyLabel}>Troféus</Text>
@@ -39,6 +42,7 @@ export default function Jogar() {
         </View>
       </View>
 
+      {/* Overwatch */}
       <View style={styles.gameCard}>
         <Image
           source={require('@/assets/images/imagem-fundo-ow.png')}
@@ -48,7 +52,9 @@ export default function Jogar() {
         <View style={styles.gameInfo}>
           <Text style={styles.gameTitle}>Overwatch</Text>
 
-          <Text style={styles.gameSubtitle}>Jogado recentemente</Text>
+          <Text style={styles.gameSubtitle}>
+            Jogado recentemente
+          </Text>
 
           <View style={styles.trophies}>
             <Text style={styles.trophyLabel}>Troféus</Text>
@@ -68,7 +74,7 @@ export default function Jogar() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#000000',
     padding: 20,
     paddingTop: 40,
   },
@@ -76,19 +82,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 30,
   },
 
   sectionTitle: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#000000',
+    color: '#ffffff',
     marginBottom: 15,
   },
 
   gameCard: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#111111',
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 20,
@@ -107,12 +113,12 @@ const styles = StyleSheet.create({
   gameTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
   },
 
   gameSubtitle: {
     fontSize: 14,
-    color: '#666666',
+    color: '#cccccc',
     marginTop: 5,
   },
 
@@ -120,13 +126,13 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#eeeeee',
+    borderTopColor: '#051f9f',
   },
 
   trophyLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#555555',
+    color: '#ffffff',
     marginBottom: 8,
   },
 
@@ -137,6 +143,6 @@ const styles = StyleSheet.create({
 
   trophy: {
     fontSize: 14,
-    color: '#555555',
+    color: '#ffffff',
   },
 });

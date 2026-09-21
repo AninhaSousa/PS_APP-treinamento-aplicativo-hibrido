@@ -59,9 +59,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 70,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#000000',
     borderTopWidth: 1,
-    borderTopColor: '#dddddd',
+    borderTopColor: '#111111',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -74,17 +74,17 @@ const styles = StyleSheet.create({
 
   icon: {
     fontSize: 22,
-    color: '#666666',
+    color: '#ffffff',
     marginBottom: 4,
   },
 
   label: {
     fontSize: 11,
-    color: '#666666',
+    color: '#ffffff',
   },
 
   activeText: {
-    color: '#000000',
+    color: '#00439c',
     fontWeight: 'bold',
   },
 });
