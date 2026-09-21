@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, Image } from 'react-native';
 
 export default function Noticias() {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Notícias</Text>
 
       <Text style={styles.sectionTitle}>Últimas novidades</Text>
@@ -23,23 +23,41 @@ export default function Noticias() {
           </Text>
         </View>
       </View>
+
       <View style={styles.newsCard}>
-  <Image
-    source={require('@/assets/images/imagem-noticia2.png')}
-    style={styles.newsImage}
-  />
+        <Image
+          source={require('@/assets/images/imagem-noticia2.png')}
+          style={styles.newsImage}
+        />
 
-  <View style={styles.newsInfo}>
-    <Text style={styles.newsTitle}>
-      Trover Saves the Universe é removido das lojas digitais sem aviso prévio
-    </Text>
+        <View style={styles.newsInfo}>
+          <Text style={styles.newsTitle}>
+            Trover Saves the Universe é removido das lojas digitais sem aviso prévio
+          </Text>
 
-    <Text style={styles.newsDescription}>
-      Trover Saves the Universe é removido das lojas digitais sem aviso prévio.
-    </Text>
-  </View>
-</View>
-    </View>
+          <Text style={styles.newsDescription}>
+            Confira mais sobre.
+          </Text>
+        </View>
+      </View>
+
+      <View style={styles.newsCard}>
+        <Image
+          source={require('@/assets/images/imagem-noticia-3.png')}
+          style={styles.newsImage}
+        />
+
+        <View style={styles.newsInfo}>
+          <Text style={styles.newsTitle}>
+            Pit of Goblin será lançado em 3 de novembro para PS5
+          </Text>
+
+          <Text style={styles.newsDescription}>
+            Notícias • PlayStation 5 • Trailer • Vídeos
+          </Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
