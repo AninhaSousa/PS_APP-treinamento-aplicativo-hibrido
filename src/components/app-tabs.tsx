@@ -8,6 +8,7 @@ export default function AppTabs() {
   const tabs = [
     { name: 'index', label: 'Início', icon: '⌂' },
     { name: 'jogar', label: 'Jogar', icon: '🎮' },
+    { name: 'noticias', label: 'Notícias', icon: '📰' },
     { name: 'explore', label: 'Explorar', icon: '⌕' },
   ];
 
@@ -27,6 +28,8 @@ export default function AppTabs() {
                 router.push('/');
               } else if (tab.name === 'jogar') {
                 router.push('/jogar');
+              } else if (tab.name === 'noticias') {
+                router.push('/noticias');
               } else {
                 router.push('/explore');
               }
