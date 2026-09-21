@@ -1,32 +1,78 @@
-import { NativeTabs } from 'expo-router/unstable-native-tabs';
-import { useColorScheme } from 'react-native';
-
-import { Colors } from '@/constants/theme';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { useRouter, usePathname } from 'expo-router';
 
 export default function AppTabs() {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === 'unspecified' ? 'light' : scheme];
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const tabs = [
+    { name: 'index', label: 'Início', icon: '⌂' },
+    { name: 'explore', label: 'Explorar', icon: '⌕' },
+  ];
 
   return (
-    <NativeTabs
-      backgroundColor={colors.background}
-      indicatorColor={colors.backgroundElement}
-      labelStyle={{ selected: { color: colors.text } }}>
-      <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/home.png')}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
+    <View style={styles.container}>
+      {tabs.map((tab) => {
+        const active =
+          pathname === `/${tab.name}` ||
+          (tab.name === 'index' && pathname === '/');
 
-      <NativeTabs.Trigger name="explore">
-        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-    </NativeTabs>
+        return (
+          <Pressable
+            key={tab.name}
+            style={styles.tab}
+            onPress={() => {
+              if (tab.name === 'index') {
+                router.push('/');
+              } else {
+                router.push('/explore');
+              }
+            }}
+          >
+            <Text style={[styles.icon, active && styles.activeText]}>
+              {tab.icon}
+            </Text>
+
+            <Text style={[styles.label, active && styles.activeText]}>
+              {tab.label}
+            </Text>
+          </Pressable>
+        );
+      })}
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    height: 70,
+    backgroundColor: '#ffffff',
+    borderTopWidth: 1,
+    borderTopColor: '#dddddd',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+
+  tab: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  icon: {
+    fontSize: 24,
+    color: '#666666',
+    marginBottom: 4,
+  },
+
+  label: {
+    fontSize: 12,
+    color: '#666666',
+  },
+
+  activeText: {
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+});
