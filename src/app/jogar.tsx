@@ -7,6 +7,23 @@ import {
 } from 'react-native';
 
 export default function Jogar() {
+  const games = [
+    {
+      image: require('@/assets/images/wolverine.png'),
+      title: 'Marvel’s Wolverine',
+      gold: 3,
+      silver: 9,
+      bronze: 23,
+    },
+    {
+      image: require('@/assets/images/imagem-fundo-ow.png'),
+      title: 'Overwatch',
+      gold: 18,
+      silver: 27,
+      bronze: 58,
+    },
+  ];
+
   return (
     <ScrollView
       style={styles.container}
@@ -14,58 +31,49 @@ export default function Jogar() {
     >
       <Text style={styles.title}>Jogar</Text>
 
-      <Text style={styles.sectionTitle}>Jogados recentemente</Text>
+      <Text style={styles.sectionTitle}>
+        Jogados recentemente
+      </Text>
 
-      {/* Wolverine */}
-      <View style={styles.gameCard}>
-        <Image
-          source={require('@/assets/images/wolverine.png')}
-          style={styles.gameImage}
-        />
+      <View style={styles.gamesContainer}>
+        {games.map((game, index) => (
+          <View style={styles.gameCard} key={index}>
+            <Image
+              source={game.image}
+              style={styles.gameImage}
+            />
 
-        <View style={styles.gameInfo}>
-          <Text style={styles.gameTitle}>Marvel’s Wolverine</Text>
+            <View style={styles.gameInfo}>
+              <Text style={styles.gameTitle}>
+                {game.title}
+              </Text>
 
-          <Text style={styles.gameSubtitle}>
-            Jogado recentemente
-          </Text>
+              <Text style={styles.gameSubtitle}>
+                Jogado recentemente
+              </Text>
 
-          <View style={styles.trophies}>
-            <Text style={styles.trophyLabel}>Troféus</Text>
+              <View style={styles.trophies}>
+                <Text style={styles.trophyLabel}>
+                  Troféus
+                </Text>
 
-            <View style={styles.trophyList}>
-              <Text style={styles.trophy}>🥇 3</Text>
-              <Text style={styles.trophy}>🥈 9</Text>
-              <Text style={styles.trophy}>🥉 23</Text>
+                <View style={styles.trophyList}>
+                  <Text style={styles.trophy}>
+                    🥇 {game.gold}
+                  </Text>
+
+                  <Text style={styles.trophy}>
+                    🥈 {game.silver}
+                  </Text>
+
+                  <Text style={styles.trophy}>
+                    🥉 {game.bronze}
+                  </Text>
+                </View>
+              </View>
             </View>
           </View>
-        </View>
-      </View>
-
-      {/* Overwatch */}
-      <View style={styles.gameCard}>
-        <Image
-          source={require('@/assets/images/imagem-fundo-ow.png')}
-          style={styles.gameImage}
-        />
-
-        <View style={styles.gameInfo}>
-          <Text style={styles.gameTitle}>Overwatch</Text>
-
-          <Text style={styles.gameSubtitle}>
-            Jogado recentemente
-          </Text>
-
-          <View style={styles.trophies}>
-            <Text style={styles.trophyLabel}>Troféus</Text>
-
-            <View style={styles.trophyList}>
-              <Text style={styles.trophy}>🥇 18</Text>
-              <Text style={styles.trophy}>🥈 27</Text>
-              <Text style={styles.trophy}>🥉 58</Text>
-            </View>
-          </View>
-        </View>
+        ))}
       </View>
     </ScrollView>
   );
@@ -90,14 +98,20 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     color: '#ffffff',
-    marginBottom: 15,
+    marginBottom: 20,
+  },
+
+  gamesContainer: {
+    alignItems: 'center',
+    paddingBottom: 20,
   },
 
   gameCard: {
+    width: '70%',
     backgroundColor: '#111111',
     borderRadius: 12,
     overflow: 'hidden',
-    marginBottom: 20,
+    marginBottom: 25,
   },
 
   gameImage: {
@@ -126,7 +140,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#051f9f',
+    borderTopColor: '#0b28bc',
   },
 
   trophyLabel: {
@@ -138,7 +152,7 @@ const styles = StyleSheet.create({
 
   trophyList: {
     flexDirection: 'row',
-    gap: 15,
+    justifyContent: 'space-between',
   },
 
   trophy: {

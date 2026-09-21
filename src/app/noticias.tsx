@@ -132,6 +132,8 @@ const styles = StyleSheet.create({
   },
 
   newsCard: {
+    width: '70%',
+    alignSelf: 'center',
     backgroundColor: '#111111',
     borderRadius: 12,
     overflow: 'hidden',
