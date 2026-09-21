@@ -1,0 +1,132 @@
+import { ScrollView, View, Text, StyleSheet, Image } from 'react-native';
+
+export default function Store() {
+  const games = [
+    {
+      image: require('@/assets/images/wolverine.png'),
+      title: 'Marvel’s Wolverine',
+      description:
+        'Jogue como o Wolverine. Aniquile os inimigos de maneira brutal e explosiva em uma disputa global pela sobrevivência dos mutantes.',
+      price: 'R$ 399,90',
+    },
+    {
+      image: require('@/assets/images/gta.png'),
+      title: 'Grand Theft Auto VI: Ultimate Edition',
+      description:
+        'A história acompanha os protagonistas Lucia Caminos e Jason Duval, um casal de criminosos no estilo "Bonnie e Clyde" envolvidos em uma conspiração no estado fictício de Leonida.',
+      price: 'R$ 549,90',
+    },
+    {
+      image: require('@/assets/images/cod.png'),
+      title: 'Call of Duty®: Black Ops II',
+      description:
+        'Jogue em uma Guerra Fria do século XXI em um futuro próximo, ambientado em 2025, onde armas e tecnologia avançada se uniram.',
+      price: 'R$ 87,45',
+    },
+    {
+      image: require('@/assets/images/aliens.png'),
+      title: 'Aliens Roadside',
+      description:
+        'Jogo de simulação e gerenciamento onde você assume o papel de um alienígena disfarçado de humano.',
+      price: 'R$ 82,50',
+    },
+    {
+      image: require('@/assets/images/detroit.png'),
+      title: 'Detroit: Become Human',
+      description:
+        'O mundo foi transformado pelo uso de androides criados pela empresa CyberLife. Máquinas começam a sentir emoções e viram os chamados "divergentes".',
+      price: 'R$ 71,50',
+    },
+    {
+      image: require('@/assets/images/forever_ago.png'),
+      title: 'Forever Ago',
+      description:
+        'Após um acontecimento trágico, ele parte em uma viagem de van rumo ao norte em busca de redenção, aceitação e paz com o passado.',
+      price: 'Ainda em lançamento',
+    },
+  ];
+
+  return (
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>PS Store</Text>
+
+      <Text style={styles.sectionTitle}>Destaques</Text>
+
+      {games.map((game, index) => (
+        <View style={styles.card} key={index}>
+          <Image source={game.image} style={styles.gameImage} />
+
+          <View style={styles.gameInfo}>
+            <Text style={styles.gameTitle}>{game.title}</Text>
+
+            <Text style={styles.description}>
+              {game.description}
+            </Text>
+
+            <Text style={styles.price}>{game.price}</Text>
+          </View>
+        </View>
+      ))}
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    padding: 20,
+    paddingTop: 40,
+  },
+
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginBottom: 25,
+  },
+
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#000000',
+    marginBottom: 15,
+  },
+
+  card: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 20,
+  },
+
+  gameImage: {
+    width: '100%',
+    height: 180,
+    resizeMode: 'cover',
+  },
+
+  gameInfo: {
+    padding: 15,
+  },
+
+  gameTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginBottom: 8,
+  },
+
+  description: {
+    fontSize: 14,
+    color: '#666666',
+    lineHeight: 20,
+    marginBottom: 12,
+  },
+
+  price: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000000',
+  },
+});

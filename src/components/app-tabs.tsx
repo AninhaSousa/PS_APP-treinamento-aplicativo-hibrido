@@ -9,6 +9,8 @@ export default function AppTabs() {
     { name: 'index', label: 'Início', icon: '⌂' },
     { name: 'jogar', label: 'Jogar', icon: '🎮' },
     { name: 'noticias', label: 'Notícias', icon: '📰' },
+    { name: 'store', label: 'PS Store', icon: '🛒' },
+    { name: 'biblioteca', label: 'Biblioteca', icon: '▣' },
     { name: 'explore', label: 'Explorar', icon: '⌕' },
   ];
 
@@ -30,6 +32,10 @@ export default function AppTabs() {
                 router.push('/jogar');
               } else if (tab.name === 'noticias') {
                 router.push('/noticias');
+              } else if (tab.name === 'store') {
+                router.push('/store');
+              } else if (tab.name === 'biblioteca') {
+                router.push('/biblioteca');
               } else {
                 router.push('/explore');
               }
@@ -67,13 +73,13 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    fontSize: 24,
+    fontSize: 22,
     color: '#666666',
     marginBottom: 4,
   },
 
   label: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#666666',
   },
 
