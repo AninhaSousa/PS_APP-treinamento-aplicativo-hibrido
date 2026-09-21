@@ -24,6 +24,10 @@ export default function Inicio() {
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Iniciar sessão</Text>
         </Pressable>
+
+        <Pressable style={styles.secondaryButton}>
+          <Text style={styles.secondaryButtonText}>Criar conta</Text>
+        </Pressable>
       </View>
     </LinearGradient>
   );
@@ -68,7 +72,7 @@ const styles = StyleSheet.create({
 
   button: {
     width: '100%',
-    height: 40,
+    height: 48,
     backgroundColor: '#ffffff',
     borderRadius: 24,
     justifyContent: 'center',
@@ -78,6 +82,23 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: '#000000',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  secondaryButton: {
+    width: '100%',
+    height: 48,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#ffffff',
+  },
+
+  secondaryButtonText: {
+    color: '#ffffff',
     fontSize: 16,
     fontWeight: '600',
   },
