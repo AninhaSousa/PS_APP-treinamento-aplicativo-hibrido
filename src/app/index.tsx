@@ -1,4 +1,11 @@
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  Image,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Inicio() {
@@ -7,28 +14,33 @@ export default function Inicio() {
       colors={['#011e4e', '#04447c', '#0583b9']}
       style={styles.container}
     >
-      <View style={styles.top}>
-        <Image
-          source={require('@/assets/images/playstation-logo.png')}
-          style={styles.logo}
-        />
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.top}>
+          <Image
+            source={require('@/assets/images/playstation-logo.png')}
+            style={styles.logo}
+          />
 
-        <Text style={styles.title}>
-          Bem-vindo(a) ao{'\n'}PlayStation App
-        </Text>
-      </View>
+          <Text style={styles.title}>
+            Bem-vindo(a) ao{'\n'}PlayStation App
+          </Text>
+        </View>
 
-      <View style={styles.bottom}>
-        <Text style={styles.startText}>Vamos lá!</Text>
+        <View style={styles.bottom}>
+          <Text style={styles.startText}>Vamos lá!</Text>
 
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Iniciar sessão</Text>
-        </Pressable>
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>Iniciar sessão</Text>
+          </Pressable>
 
-        <Pressable style={styles.secondaryButton}>
-          <Text style={styles.secondaryButtonText}>Criar conta</Text>
-        </Pressable>
-      </View>
+          <Pressable style={styles.secondaryButton}>
+            <Text style={styles.secondaryButtonText}>Criar conta</Text>
+          </Pressable>
+        </View>
+      </ScrollView>
     </LinearGradient>
   );
 }
@@ -36,8 +48,12 @@ export default function Inicio() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  scrollContent: {
+    flexGrow: 1,
     justifyContent: 'space-between',
-    paddingTop: 200,
+    paddingTop: 80,
     paddingBottom: 20,
   },
 
@@ -62,6 +78,7 @@ const styles = StyleSheet.create({
   bottom: {
     alignItems: 'center',
     paddingHorizontal: 25,
+    marginTop: 50,
   },
 
   startText: {

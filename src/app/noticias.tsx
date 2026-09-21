@@ -1,62 +1,64 @@
-import { ScrollView, View, Text, StyleSheet, Image } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+} from 'react-native';
 
 export default function Noticias() {
+  const news = [
+    {
+      image: require('@/assets/images/imagem-noticia.png'),
+      title:
+        'The Blood of Dawnwalker recebe dificuldade menor e melhorias no combate no próximo patch',
+      description:
+        'Confira as últimas notícias, jogos e novidades do universo PlayStation.',
+    },
+    {
+      image: require('@/assets/images/imagem-noticia2.png'),
+      title:
+        'Trover Saves the Universe é removido das lojas digitais sem aviso prévio',
+      description:
+        'Trover Saves the Universe é removido das lojas digitais sem aviso prévio.',
+    },
+    {
+      image: require('@/assets/images/imagem-noticia-3.png'),
+      title: 'Pit of Goblin será lançado em 3 de novembro para PS5',
+      description: 'Notícias • PlayStation 5 • Trailer • Vídeos',
+    },
+  ];
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Notícias</Text>
 
-      <Text style={styles.sectionTitle}>Últimas novidades</Text>
+      <View style={styles.tabs}>
+        <Pressable style={styles.tab}>
+          <Text style={styles.tabText}>Notícias oficiais</Text>
+        </Pressable>
 
-      <View style={styles.newsCard}>
-        <Image
-          source={require('@/assets/images/imagem-noticia.png')}
-          style={styles.newsImage}
-        />
-
-        <View style={styles.newsInfo}>
-          <Text style={styles.newsTitle}>
-            The Blood of Dawnwalker recebe dificuldade menor e melhorias no combate no próximo patch
-          </Text>
-
-          <Text style={styles.newsDescription}>
-            Confira as últimas notícias, jogos e novidades do universo PlayStation.
-          </Text>
-        </View>
+        <Pressable style={styles.activeTab}>
+          <Text style={styles.activeTabText}>PS Blog</Text>
+        </Pressable>
       </View>
 
-      <View style={styles.newsCard}>
-        <Image
-          source={require('@/assets/images/imagem-noticia2.png')}
-          style={styles.newsImage}
-        />
+      <Text style={styles.sectionTitle}>PS Blog</Text>
 
-        <View style={styles.newsInfo}>
-          <Text style={styles.newsTitle}>
-            Trover Saves the Universe é removido das lojas digitais sem aviso prévio
-          </Text>
+      {news.map((item, index) => (
+        <View style={styles.newsCard} key={index}>
+          <Image source={item.image} style={styles.newsImage} />
 
-          <Text style={styles.newsDescription}>
-            Confira mais sobre.
-          </Text>
+          <View style={styles.newsInfo}>
+            <Text style={styles.newsTitle}>{item.title}</Text>
+
+            <Text style={styles.newsDescription}>
+              {item.description}
+            </Text>
+          </View>
         </View>
-      </View>
-
-      <View style={styles.newsCard}>
-        <Image
-          source={require('@/assets/images/imagem-noticia-3.png')}
-          style={styles.newsImage}
-        />
-
-        <View style={styles.newsInfo}>
-          <Text style={styles.newsTitle}>
-            Pit of Goblin será lançado em 3 de novembro para PS5
-          </Text>
-
-          <Text style={styles.newsDescription}>
-            Notícias • PlayStation 5 • Trailer • Vídeos
-          </Text>
-        </View>
-      </View>
+      ))}
     </ScrollView>
   );
 }
@@ -73,7 +75,45 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: '#000000',
+    marginBottom: 20,
+  },
+
+  tabs: {
+    flexDirection: 'row',
     marginBottom: 25,
+    gap: 10,
+  },
+
+  activeTab: {
+    flex: 1,
+    height: 42,
+    backgroundColor: '#000000',
+    borderRadius: 21,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  activeTabText: {
+    color: '#ffffff',
+    fontSize: 13,
+    fontWeight: '600',
+  },
+
+  tab: {
+    flex: 1,
+    height: 42,
+    backgroundColor: '#ffffff',
+    borderRadius: 21,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#cccccc',
+  },
+
+  tabText: {
+    color: '#000000',
+    fontSize: 13,
+    fontWeight: '600',
   },
 
   sectionTitle: {

@@ -1,4 +1,11 @@
-import { ScrollView, View, Text, StyleSheet, Image } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+} from 'react-native';
 
 export default function Store() {
   const games = [
@@ -50,7 +57,25 @@ export default function Store() {
     <ScrollView style={styles.container}>
       <Text style={styles.title}>PS Store</Text>
 
-      <Text style={styles.sectionTitle}>Destaques</Text>
+      <View style={styles.tabs}>
+        <Pressable style={styles.activeTab}>
+          <Text style={styles.activeTabText}>Novidades</Text>
+        </Pressable>
+
+        <Pressable style={styles.tab}>
+          <Text style={styles.tabText}>Coleções</Text>
+        </Pressable>
+
+        <Pressable style={styles.tab}>
+          <Text style={styles.tabText}>Ofertas</Text>
+        </Pressable>
+
+        <Pressable style={styles.tab}>
+          <Text style={styles.tabText}>Assinaturas</Text>
+        </Pressable>
+      </View>
+
+      <Text style={styles.sectionTitle}>Novidades</Text>
 
       {games.map((game, index) => (
         <View style={styles.card} key={index}>
@@ -83,7 +108,45 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: '#000000',
+    marginBottom: 20,
+  },
+
+  tabs: {
+    flexDirection: 'row',
     marginBottom: 25,
+    gap: 8,
+  },
+
+  activeTab: {
+    flex: 1,
+    height: 42,
+    backgroundColor: '#000000',
+    borderRadius: 21,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  activeTabText: {
+    color: '#ffffff',
+    fontSize: 12,
+    fontWeight: '600',
+  },
+
+  tab: {
+    flex: 1,
+    height: 42,
+    backgroundColor: '#ffffff',
+    borderRadius: 21,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#cccccc',
+  },
+
+  tabText: {
+    color: '#000000',
+    fontSize: 12,
+    fontWeight: '600',
   },
 
   sectionTitle: {
