@@ -1,56 +1,93 @@
-# Welcome to your Expo app 👋
+# 🎮 PlayStation App — Projeto Acadêmico
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Projeto desenvolvido para a disciplina de **Aplicativos Híbridos**, utilizando **React Native com Expo**.
 
-## Get started
+A proposta do projeto é recriar a interface e algumas das principais funcionalidades do **PlayStation App**, utilizando como referência sua identidade visual e organização de telas.
 
-1. Install dependencies
+## 📱 Sobre o projeto
 
-   ```bash
-   npm install
-   ```
+O aplicativo apresenta uma interface inspirada no PlayStation App, com navegação entre diferentes áreas:
 
-2. Start the app
+* 🏠 **Início** — tela inicial do aplicativo.
+* 🎮 **Jogar** — jogos jogados recentemente e troféus.
+* 📰 **Notícias** — notícias e conteúdos do PlayStation.
+* 🛒 **PS Store** — apresentação de jogos e preços.
+* 📚 **Biblioteca** — jogos disponíveis na biblioteca.
+* 🔎 **Explorar** — pesquisa e visualização de jogos.
 
-   ```bash
-   npx expo start
-   ```
+O projeto também possui adaptação **responsiva para Web**, permitindo que a interface seja organizada de forma diferente em telas maiores sem alterar a experiência principal da versão mobile.
 
-In the output, you'll find options to open the app in a
+## 🛠️ Tecnologias utilizadas
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+* **React Native**
+* **Expo**
+* **Expo Router**
+* **TypeScript**
+* **JavaScript**
+* **CSS / StyleSheet**
+* **Git e GitHub**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🎨 Identidade visual
 
-## Get a fresh project
+A interface utiliza principalmente as cores associadas ao PlayStation:
 
-When you're ready, run:
+* ⚪ Branco — `#FFFFFF`
+* ⚫ Preto — `#000000`
+* 🔵 Azul PlayStation — `#00439C`
+
+## 🚀 Como executar o projeto
+
+### 1. Clone o repositório
 
 ```bash
-npm run reset-project
+git clone https://github.com/AninhaSousa/PS_APP-treinamento-aplicativo-hibrido.git
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Entre na pasta
 
-### Other setup steps
+```bash
+cd PS_APP-treinamento-aplicativo-hibrido
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+### 3. Instale as dependências
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### 4. Inicie o projeto
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
+```
 
-## Join the community
+Após iniciar, é possível executar o projeto utilizando um dispositivo/emulador ou acessar a versão Web.
 
-Join our community of developers creating universal apps.
+## 📂 Estrutura principal
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```text
+src/
+├── app/
+│   ├── index.tsx
+│   ├── jogar.tsx
+│   ├── noticias.tsx
+│   ├── store.tsx
+│   ├── biblioteca.tsx
+│   └── explore.tsx
+│
+└── components/
+    └── app-tabs.tsx
+
+assets/
+└── images/
+```
+
+## 🎓 Objetivo acadêmico
+
+O projeto tem como objetivo aplicar os conhecimentos apresentados na disciplina de **Aplicativos Híbridos**, principalmente no desenvolvimento de interfaces utilizando React Native, navegação entre telas, organização de componentes e adaptação da aplicação para diferentes tamanhos de tela.
+
+## 👩‍💻 Autora
+
+**Ana Carolina**
+
+Projeto desenvolvido para fins acadêmicos.
