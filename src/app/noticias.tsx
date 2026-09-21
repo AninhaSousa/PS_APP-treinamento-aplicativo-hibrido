@@ -1,10 +1,44 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 export default function Noticias() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Notícias</Text>
-      <Text style={styles.subtitle}>Últimas novidades do PlayStation</Text>
+
+      <Text style={styles.sectionTitle}>Últimas novidades</Text>
+
+      <View style={styles.newsCard}>
+        <Image
+          source={require('@/assets/images/imagem-noticia.png')}
+          style={styles.newsImage}
+        />
+
+        <View style={styles.newsInfo}>
+          <Text style={styles.newsTitle}>
+            The Blood of Dawnwalker recebe dificuldade menor e melhorias no combate no próximo patch
+          </Text>
+
+          <Text style={styles.newsDescription}>
+            Confira as últimas notícias, jogos e novidades do universo PlayStation.
+          </Text>
+        </View>
+      </View>
+      <View style={styles.newsCard}>
+  <Image
+    source={require('@/assets/images/imagem-noticia2.png')}
+    style={styles.newsImage}
+  />
+
+  <View style={styles.newsInfo}>
+    <Text style={styles.newsTitle}>
+      Trover Saves the Universe é removido das lojas digitais sem aviso prévio
+    </Text>
+
+    <Text style={styles.newsDescription}>
+      Trover Saves the Universe é removido das lojas digitais sem aviso prévio.
+    </Text>
+  </View>
+</View>
     </View>
   );
 }
@@ -12,20 +46,52 @@ export default function Noticias() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
-    padding: 25,
-    paddingTop: 50,
+    backgroundColor: '#f5f5f5',
+    padding: 20,
+    paddingTop: 40,
   },
 
   title: {
     fontSize: 32,
     fontWeight: 'bold',
     color: '#000000',
-    marginBottom: 10,
+    marginBottom: 25,
   },
 
-  subtitle: {
-    fontSize: 18,
-    color: '#555555',
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#000000',
+    marginBottom: 15,
+  },
+
+  newsCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 25,
+  },
+
+  newsImage: {
+    width: '100%',
+    height: 180,
+    resizeMode: 'cover',
+  },
+
+  newsInfo: {
+    padding: 15,
+  },
+
+  newsTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginBottom: 8,
+  },
+
+  newsDescription: {
+    fontSize: 14,
+    color: '#666666',
+    lineHeight: 20,
   },
 });
