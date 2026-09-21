@@ -70,13 +70,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
     backgroundColor: '#ffffff',
-    borderRadius: 25,
+    borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 5,
   },
 
   buttonText: {
     color: '#000000',
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
