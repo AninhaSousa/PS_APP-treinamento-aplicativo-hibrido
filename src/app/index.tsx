@@ -1,11 +1,14 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 
 export default function Inicio() {
   return (
     <View style={styles.container}>
 
       <View style={styles.top}>
-        <Text style={styles.logo}>PS</Text>
+       <Image
+        source={require('@/assets/images/playstation-logo.png')}
+        style={styles.logo}
+        />
 
         <Text style={styles.title}>
           Bem-vindo(a) ao{'\n'}PlayStation App
@@ -38,11 +41,11 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    fontSize: 70,
-    fontWeight: 'bold',
-    color: '#ffffff',
+    width: 90,
+    height: 90,
+    resizeMode: 'contain',
     marginBottom: 20,
-  },
+},
 
   title: {
     color: '#ffffff',
