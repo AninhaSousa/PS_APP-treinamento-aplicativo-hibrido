@@ -5,10 +5,13 @@ import {
   Pressable,
   StyleSheet,
   Image,
+  Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Inicio() {
+  const isWeb = Platform.OS === 'web';
+
   return (
     <LinearGradient
       colors={['#011e4e', '#04447c', '#0583b9']}
@@ -32,12 +35,24 @@ export default function Inicio() {
         <View style={styles.bottom}>
           <Text style={styles.startText}>Vamos lá!</Text>
 
-          <Pressable style={styles.button}>
+          <Pressable
+            style={[
+              styles.button,
+              isWeb && styles.webButton,
+            ]}
+          >
             <Text style={styles.buttonText}>Iniciar sessão</Text>
           </Pressable>
 
-          <Pressable style={styles.secondaryButton}>
-            <Text style={styles.secondaryButtonText}>Criar conta</Text>
+          <Pressable
+            style={[
+              styles.secondaryButton,
+              isWeb && styles.webButton,
+            ]}
+          >
+            <Text style={styles.secondaryButtonText}>
+              Criar conta
+            </Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -97,12 +112,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 
-  buttonText: {
-    color: '#000000',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-
   secondaryButton: {
     width: '100%',
     height: 48,
@@ -112,6 +121,16 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     borderColor: '#ffffff',
+  },
+
+  webButton: {
+    width: 280,
+  },
+
+  buttonText: {
+    color: '#000000',
+    fontSize: 16,
+    fontWeight: '600',
   },
 
   secondaryButtonText: {

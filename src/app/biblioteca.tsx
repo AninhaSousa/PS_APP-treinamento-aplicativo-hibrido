@@ -5,9 +5,12 @@ import {
   StyleSheet,
   Image,
   Pressable,
+  Platform,
 } from 'react-native';
 
 export default function Biblioteca() {
+  const isWeb = Platform.OS === 'web';
+
   const games = [
     require('@/assets/images/wolverine.png'),
     require('@/assets/images/imagem-fundo-ow.png'),
@@ -17,6 +20,7 @@ export default function Biblioteca() {
   return (
     <ScrollView
       style={styles.container}
+      contentContainerStyle={isWeb && styles.webContent}
       showsVerticalScrollIndicator={false}
     >
       <Text style={styles.title}>Biblioteca</Text>
@@ -41,9 +45,20 @@ export default function Biblioteca() {
         </Pressable>
       </View>
 
-      <View style={styles.gamesGrid}>
+      <View
+        style={[
+          styles.gamesGrid,
+          isWeb && styles.webGamesGrid,
+        ]}
+      >
         {games.map((game, index) => (
-          <View style={styles.gameCard} key={index}>
+          <View
+            style={[
+              styles.gameCard,
+              isWeb && styles.webGameCard,
+            ]}
+            key={index}
+          >
             <Image
               source={game}
               style={styles.gameImage}
@@ -61,6 +76,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     padding: 20,
     paddingTop: 40,
+  },
+
+  webContent: {
+    maxWidth: 1200,
+    width: '100%',
+    alignSelf: 'center',
+    paddingHorizontal: 40,
+    paddingBottom: 40,
   },
 
   title: {
@@ -142,12 +165,21 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
+  webGamesGrid: {
+    gap: 20,
+  },
+
   gameCard: {
     width: '48%',
     backgroundColor: '#111111',
     borderRadius: 10,
     overflow: 'hidden',
     marginBottom: 15,
+  },
+
+  webGameCard: {
+    width: '31.5%',
+    marginBottom: 0,
   },
 
   gameImage: {

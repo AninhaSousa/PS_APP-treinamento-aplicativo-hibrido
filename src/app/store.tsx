@@ -5,9 +5,12 @@ import {
   StyleSheet,
   Image,
   Pressable,
+  Platform,
 } from 'react-native';
 
 export default function Store() {
+  const isWeb = Platform.OS === 'web';
+
   const games = [
     {
       image: require('@/assets/images/wolverine.png'),
@@ -56,6 +59,7 @@ export default function Store() {
   return (
     <ScrollView
       style={styles.container}
+      contentContainerStyle={isWeb && styles.webContent}
       showsVerticalScrollIndicator={false}
     >
       <Text style={styles.title}>PS Store</Text>
@@ -80,28 +84,36 @@ export default function Store() {
 
       <Text style={styles.sectionTitle}>Novidades</Text>
 
-      {games.map((game, index) => (
-        <View style={styles.card} key={index}>
-          <Image
-            source={game.image}
-            style={styles.gameImage}
-          />
+      <View style={isWeb && styles.webGamesGrid}>
+        {games.map((game, index) => (
+          <View
+            style={[
+              styles.card,
+              isWeb && styles.webCard,
+            ]}
+            key={index}
+          >
+            <Image
+              source={game.image}
+              style={styles.gameImage}
+            />
 
-          <View style={styles.gameInfo}>
-            <Text style={styles.gameTitle}>
-              {game.title}
-            </Text>
+            <View style={styles.gameInfo}>
+              <Text style={styles.gameTitle}>
+                {game.title}
+              </Text>
 
-            <Text style={styles.description}>
-              {game.description}
-            </Text>
+              <Text style={styles.description}>
+                {game.description}
+              </Text>
 
-            <Text style={styles.price}>
-              {game.price}
-            </Text>
+              <Text style={styles.price}>
+                {game.price}
+              </Text>
+            </View>
           </View>
-        </View>
-      ))}
+        ))}
+      </View>
     </ScrollView>
   );
 }
@@ -112,6 +124,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     padding: 20,
     paddingTop: 40,
+  },
+
+  webContent: {
+    maxWidth: 1200,
+    width: '100%',
+    alignSelf: 'center',
+    paddingHorizontal: 40,
+    paddingBottom: 40,
   },
 
   title: {
@@ -166,6 +186,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 
+  webGamesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 20,
+  },
+
   card: {
     width: '82%',
     alignSelf: 'center',
@@ -173,6 +200,12 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 20,
+  },
+
+  webCard: {
+    width: '48%',
+    alignSelf: 'flex-start',
+    marginBottom: 0,
   },
 
   gameImage: {

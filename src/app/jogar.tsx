@@ -4,9 +4,12 @@ import {
   Text,
   StyleSheet,
   Image,
+  Platform,
 } from 'react-native';
 
 export default function Jogar() {
+  const isWeb = Platform.OS === 'web';
+
   const games = [
     {
       image: require('@/assets/images/wolverine.png'),
@@ -27,6 +30,7 @@ export default function Jogar() {
   return (
     <ScrollView
       style={styles.container}
+      contentContainerStyle={isWeb && styles.webContent}
       showsVerticalScrollIndicator={false}
     >
       <Text style={styles.title}>Jogar</Text>
@@ -35,9 +39,15 @@ export default function Jogar() {
         Jogados recentemente
       </Text>
 
-      <View style={styles.gamesContainer}>
+      <View style={isWeb ? styles.webGamesGrid : styles.gamesContainer}>
         {games.map((game, index) => (
-          <View style={styles.gameCard} key={index}>
+          <View
+            style={[
+              styles.gameCard,
+              isWeb && styles.webGameCard,
+            ]}
+            key={index}
+          >
             <Image
               source={game.image}
               style={styles.gameImage}
@@ -87,6 +97,14 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
 
+  webContent: {
+    maxWidth: 1200,
+    width: '100%',
+    alignSelf: 'center',
+    paddingHorizontal: 40,
+    paddingBottom: 40,
+  },
+
   title: {
     fontSize: 32,
     fontWeight: 'bold',
@@ -106,12 +124,24 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
+  webGamesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 20,
+  },
+
   gameCard: {
-    width: '70%',
+    width: '82%',
     backgroundColor: '#111111',
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 25,
+  },
+
+  webGameCard: {
+    width: '48%',
+    marginBottom: 0,
   },
 
   gameImage: {
@@ -140,7 +170,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#0b28bc',
+    borderTopColor: '#F3C300',
   },
 
   trophyLabel: {

@@ -5,9 +5,12 @@ import {
   StyleSheet,
   Image,
   Pressable,
+  Platform,
 } from 'react-native';
 
 export default function Noticias() {
+  const isWeb = Platform.OS === 'web';
+
   const news = [
     {
       image: require('@/assets/images/imagem-noticia.png'),
@@ -25,14 +28,24 @@ export default function Noticias() {
     },
     {
       image: require('@/assets/images/imagem-noticia-3.png'),
-      title: 'Pit of Goblin será lançado em 3 de novembro para PS5',
-      description: 'Notícias • PlayStation 5 • Trailer • Vídeos',
+      title:
+        'Pit of Goblin será lançado em 3 de novembro para PS5',
+      description:
+        'Notícias • PlayStation 5 • Trailer • Vídeos',
+    },
+    {
+      image: require('@/assets/images/lalisa.png'),
+      title:
+        'Lisa x PlayStation será lançada em outubro',
+      description:
+        'A colaboração Lisa x PlayStation será lançada em outubro: primeira divulgação do controle sem fio DualSense – Edição limitada da Lisa.',
     },
   ];
 
   return (
     <ScrollView
       style={styles.container}
+      contentContainerStyle={isWeb && styles.webContent}
       showsVerticalScrollIndicator={false}
     >
       <Text style={styles.title}>Notícias</Text>
@@ -49,24 +62,32 @@ export default function Noticias() {
 
       <Text style={styles.sectionTitle}>PS Blog</Text>
 
-      {news.map((item, index) => (
-        <View style={styles.newsCard} key={index}>
-          <Image
-            source={item.image}
-            style={styles.newsImage}
-          />
+      <View style={isWeb && styles.webNewsGrid}>
+        {news.map((item, index) => (
+          <View
+            style={[
+              styles.newsCard,
+              isWeb && styles.webNewsCard,
+            ]}
+            key={index}
+          >
+            <Image
+              source={item.image}
+              style={styles.newsImage}
+            />
 
-          <View style={styles.newsInfo}>
-            <Text style={styles.newsTitle}>
-              {item.title}
-            </Text>
+            <View style={styles.newsInfo}>
+              <Text style={styles.newsTitle}>
+                {item.title}
+              </Text>
 
-            <Text style={styles.newsDescription}>
-              {item.description}
-            </Text>
+              <Text style={styles.newsDescription}>
+                {item.description}
+              </Text>
+            </View>
           </View>
-        </View>
-      ))}
+        ))}
+      </View>
     </ScrollView>
   );
 }
@@ -77,6 +98,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     padding: 20,
     paddingTop: 40,
+  },
+
+  webContent: {
+    maxWidth: 1200,
+    width: '100%',
+    alignSelf: 'center',
+    paddingHorizontal: 40,
+    paddingBottom: 40,
   },
 
   title: {
@@ -131,13 +160,26 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 
+  webNewsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 20,
+  },
+
   newsCard: {
-    width: '70%',
+    width: '82%',
     alignSelf: 'center',
     backgroundColor: '#111111',
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 25,
+  },
+
+  webNewsCard: {
+    width: '48%',
+    alignSelf: 'flex-start',
+    marginBottom: 0,
   },
 
   newsImage: {
