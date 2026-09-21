@@ -1,13 +1,16 @@
 import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Inicio() {
   return (
-    <View style={styles.container}>
-
+    <LinearGradient
+      colors={['#011e4e', '#04447c', '#0583b9']}
+      style={styles.container}
+    >
       <View style={styles.top}>
-       <Image
-        source={require('@/assets/images/playstation-logo.png')}
-        style={styles.logo}
+        <Image
+          source={require('@/assets/images/playstation-logo.png')}
+          style={styles.logo}
         />
 
         <Text style={styles.title}>
@@ -22,15 +25,13 @@ export default function Inicio() {
           <Text style={styles.buttonText}>Iniciar sessão</Text>
         </Pressable>
       </View>
-
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#003791',
     justifyContent: 'space-between',
     paddingTop: 50,
     paddingBottom: 20,
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     height: 90,
     resizeMode: 'contain',
     marginBottom: 20,
-},
+  },
 
   title: {
     color: '#ffffff',
