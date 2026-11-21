@@ -8,6 +8,7 @@ import {
   Pressable,
   Platform,
 } from 'react-native';
+import { useRouter } from 'expo-router';
 
 import { Theme } from '@/constants/theme';
 import { useAuth } from '@/context/auth-context';
@@ -17,7 +18,10 @@ export default function Jogar() {
   const isWeb = Platform.OS === 'web';
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
-  const { user, signOut } = useAuth();
+  const router = useRouter();
+  const { user } = useAuth();
+
+  const initial = user?.name?.trim().charAt(0).toUpperCase() ?? '?';
 
   const games = [
     {
@@ -42,12 +46,19 @@ export default function Jogar() {
       contentContainerStyle={isWeb && styles.webContent}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.title}>Jogar</Text>
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.title}>Jogar</Text>
+          <Text style={styles.greeting}>Olá, {user?.name}</Text>
+        </View>
 
-      <Text style={styles.greeting}>Olá, {user?.name}</Text>
-      <Pressable onPress={signOut}>
-        <Text style={styles.logout}>Sair</Text>
-      </Pressable>
+        <Pressable
+          style={styles.avatar}
+          onPress={() => router.push('/perfil')}
+        >
+          <Text style={styles.avatarText}>{initial}</Text>
+        </Pressable>
+      </View>
 
       <Text style={styles.sectionTitle}>
         Jogados recentemente
@@ -120,24 +131,38 @@ const createStyles = (theme: Theme) =>
       paddingBottom: 40,
     },
 
+    header: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: 30,
+    },
+
     title: {
       fontSize: 32,
       fontWeight: 'bold',
       color: theme.text,
-      marginBottom: 10,
     },
 
     greeting: {
-      fontSize: 16,
+      fontSize: 15,
       color: theme.textSecondary,
-      marginBottom: 6,
+      marginTop: 2,
     },
 
-    logout: {
-      fontSize: 16,
-      color: theme.primary,
-      fontWeight: '600',
-      marginBottom: 25,
+    avatar: {
+      width: 46,
+      height: 46,
+      borderRadius: 23,
+      backgroundColor: theme.primary,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+    avatarText: {
+      color: theme.onPrimary,
+      fontSize: 20,
+      fontWeight: 'bold',
     },
 
     sectionTitle: {
