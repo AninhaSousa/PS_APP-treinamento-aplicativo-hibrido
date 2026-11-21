@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
 
 import { Theme } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -8,11 +9,20 @@ import type { Deal } from '@/services/api';
 export default function DealCard({ deal }: { deal: Deal }) {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const router = useRouter();
 
   const discount = Math.round(Number(deal.savings));
 
   return (
-    <View style={styles.card}>
+    <Pressable
+      style={styles.card}
+      onPress={() =>
+        router.push({
+          pathname: '/jogo/[id]',
+          params: { id: deal.gameID },
+        })
+      }
+    >
       <Image source={{ uri: deal.thumb }} style={styles.thumb} />
 
       <View style={styles.info}>
@@ -26,7 +36,7 @@ export default function DealCard({ deal }: { deal: Deal }) {
           <Text style={styles.price}>US$ {deal.salePrice}</Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
