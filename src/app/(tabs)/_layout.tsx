@@ -64,6 +64,15 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="favoritos"
+        options={{
+          title: 'Favoritos',
+          tabBarIcon: ({ color }) => (
+            <Text style={{ fontSize: 22, color }}>♥</Text>
+          ),
+        }}
+      />
     </Tabs>
   );
 }
