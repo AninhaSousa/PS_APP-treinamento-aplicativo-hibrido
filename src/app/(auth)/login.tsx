@@ -83,6 +83,10 @@ export default function Login() {
           <Text style={styles.buttonText}>Entrar</Text>
         )}
       </Pressable>
+
+      <Pressable onPress={() => router.replace('/cadastro')}>
+        <Text style={styles.link}>Não tem conta? Criar conta</Text>
+      </Pressable>
     </ScrollView>
   );
 }
@@ -148,5 +152,12 @@ const createStyles = (theme: Theme) =>
       color: theme.onPrimary,
       fontSize: 16,
       fontWeight: '600',
+    },
+
+    link: {
+      color: theme.textSecondary,
+      fontSize: 14,
+      textAlign: 'center',
+      marginTop: 20,
     },
   });
