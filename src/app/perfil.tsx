@@ -50,6 +50,14 @@ export default function Perfil() {
         </Text>
       </View>
 
+      <Pressable
+        style={styles.settings}
+        onPress={() => router.push('/configuracoes')}
+      >
+        <Text style={styles.settingsText}>Configurações</Text>
+        <Text style={styles.arrow}>›</Text>
+      </Pressable>
+
       <Pressable style={styles.logout} onPress={signOut}>
         <Text style={styles.logoutText}>Sair da conta</Text>
       </Pressable>
@@ -120,7 +128,7 @@ const createStyles = (theme: Theme) =>
       borderRadius: 12,
       padding: 20,
       alignItems: 'center',
-      marginBottom: 30,
+      marginBottom: 20,
     },
 
     statNumber: {
@@ -133,6 +141,27 @@ const createStyles = (theme: Theme) =>
       fontSize: 14,
       color: theme.textSecondary,
       marginTop: 4,
+    },
+
+    settings: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor: theme.surface,
+      borderRadius: 12,
+      padding: 18,
+      marginBottom: 20,
+    },
+
+    settingsText: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: theme.text,
+    },
+
+    arrow: {
+      fontSize: 22,
+      color: theme.textSecondary,
     },
 
     logout: {
