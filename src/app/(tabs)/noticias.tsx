@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   ScrollView,
   View,
@@ -8,8 +9,13 @@ import {
   Platform,
 } from 'react-native';
 
+import { Theme } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
+
 export default function Noticias() {
   const isWeb = Platform.OS === 'web';
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
 
   const news = [
     {
@@ -92,116 +98,117 @@ export default function Noticias() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    padding: 20,
-    paddingTop: 40,
-  },
+const createStyles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background,
+      padding: 20,
+      paddingTop: 40,
+    },
 
-  webContent: {
-    maxWidth: 1200,
-    width: '100%',
-    alignSelf: 'center',
-    paddingHorizontal: 40,
-    paddingBottom: 40,
-  },
+    webContent: {
+      maxWidth: 1200,
+      width: '100%',
+      alignSelf: 'center',
+      paddingHorizontal: 40,
+      paddingBottom: 40,
+    },
 
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 20,
-  },
+    title: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: theme.text,
+      marginBottom: 20,
+    },
 
-  tabs: {
-    flexDirection: 'row',
-    marginBottom: 25,
-    gap: 10,
-  },
+    tabs: {
+      flexDirection: 'row',
+      marginBottom: 25,
+      gap: 10,
+    },
 
-  activeTab: {
-    flex: 1,
-    height: 42,
-    backgroundColor: '#00439c',
-    borderRadius: 21,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    activeTab: {
+      flex: 1,
+      height: 42,
+      backgroundColor: theme.primary,
+      borderRadius: 21,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
 
-  activeTabText: {
-    color: '#ffffff',
-    fontSize: 13,
-    fontWeight: '600',
-  },
+    activeTabText: {
+      color: theme.onPrimary,
+      fontSize: 13,
+      fontWeight: '600',
+    },
 
-  tab: {
-    flex: 1,
-    height: 42,
-    backgroundColor: '#111111',
-    borderRadius: 21,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#333333',
-  },
+    tab: {
+      flex: 1,
+      height: 42,
+      backgroundColor: theme.surface,
+      borderRadius: 21,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: theme.border,
+    },
 
-  tabText: {
-    color: '#ffffff',
-    fontSize: 13,
-    fontWeight: '600',
-  },
+    tabText: {
+      color: theme.text,
+      fontSize: 13,
+      fontWeight: '600',
+    },
 
-  sectionTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#ffffff',
-    marginBottom: 15,
-  },
+    sectionTitle: {
+      fontSize: 22,
+      fontWeight: '600',
+      color: theme.text,
+      marginBottom: 15,
+    },
 
-  webNewsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: 20,
-  },
+    webNewsGrid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      gap: 20,
+    },
 
-  newsCard: {
-    width: '82%',
-    alignSelf: 'center',
-    backgroundColor: '#111111',
-    borderRadius: 12,
-    overflow: 'hidden',
-    marginBottom: 25,
-  },
+    newsCard: {
+      width: '82%',
+      alignSelf: 'center',
+      backgroundColor: theme.surface,
+      borderRadius: 12,
+      overflow: 'hidden',
+      marginBottom: 25,
+    },
 
-  webNewsCard: {
-    width: '48%',
-    alignSelf: 'flex-start',
-    marginBottom: 0,
-  },
+    webNewsCard: {
+      width: '48%',
+      alignSelf: 'flex-start',
+      marginBottom: 0,
+    },
 
-  newsImage: {
-    width: '100%',
-    height: 180,
-    resizeMode: 'cover',
-  },
+    newsImage: {
+      width: '100%',
+      height: 180,
+      resizeMode: 'cover',
+    },
 
-  newsInfo: {
-    padding: 15,
-  },
+    newsInfo: {
+      padding: 15,
+    },
 
-  newsTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 8,
-  },
+    newsTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: theme.text,
+      marginBottom: 8,
+    },
 
-  newsDescription: {
-    fontSize: 14,
-    color: '#cccccc',
-    lineHeight: 20,
-  },
-});
+    newsDescription: {
+      fontSize: 14,
+      color: theme.textSecondary,
+      lineHeight: 20,
+    },
+  });
