@@ -13,6 +13,7 @@ import {
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import { Theme } from '@/constants/theme';
+import { useFavorites } from '@/context/favorites-context';
 import { useGame } from '@/hooks/use-game';
 import { useTheme } from '@/hooks/use-theme';
 import { dealLink } from '@/services/api';
@@ -24,17 +25,38 @@ export default function DetalheJogo() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { game, stores, status, reload } = useGame(id);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
-  const back = (
-    <Pressable onPress={() => router.back()}>
-      <Text style={styles.back}>← Voltar</Text>
-    </Pressable>
+  const favorited = isFavorite(id);
+
+  const header = (
+    <View style={styles.topRow}>
+      <Pressable onPress={() => router.back()}>
+        <Text style={styles.back}>← Voltar</Text>
+      </Pressable>
+
+      {status === 'success' && game && (
+        <Pressable
+          onPress={() =>
+            toggleFavorite({
+              gameID: id,
+              title: game.info.title,
+              thumb: game.info.thumb,
+            })
+          }
+        >
+          <Text style={styles.heart}>
+            {favorited ? '♥ Favoritado' : '♡ Favoritar'}
+          </Text>
+        </Pressable>
+      )}
+    </View>
   );
 
   if (status === 'loading') {
     return (
       <View style={styles.container}>
-        {back}
+        {header}
         <View style={styles.center}>
           <ActivityIndicator size="large" color={theme.text} />
           <Text style={styles.message}>Carregando jogo...</Text>
@@ -46,7 +68,7 @@ export default function DetalheJogo() {
   if (status === 'error' || !game) {
     return (
       <View style={styles.container}>
-        {back}
+        {header}
         <View style={styles.center}>
           <Text style={styles.error}>
             Não foi possível carregar este jogo. Confira sua conexão.
@@ -69,7 +91,7 @@ export default function DetalheJogo() {
       contentContainerStyle={isWeb && styles.webContent}
       showsVerticalScrollIndicator={false}
     >
-      {back}
+      {header}
 
       <Image source={{ uri: game.info.thumb }} style={styles.cover} />
 
@@ -134,11 +156,23 @@ const createStyles = (theme: Theme) =>
       paddingBottom: 40,
     },
 
+    topRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: 20,
+    },
+
     back: {
       color: theme.primary,
       fontSize: 16,
       fontWeight: '600',
-      marginBottom: 20,
+    },
+
+    heart: {
+      color: theme.primary,
+      fontSize: 16,
+      fontWeight: '600',
     },
 
     center: {
