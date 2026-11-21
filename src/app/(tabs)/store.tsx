@@ -34,35 +34,35 @@ export default function Store() {
       title: 'Marvel’s Wolverine',
       description:
         'Jogue como o Wolverine. Aniquile os inimigos de maneira brutal e explosiva em uma disputa global pela sobrevivência dos mutantes.',
-      price: 'R$ 399,90',
+      price: 'US$ 69,99',
     },
     {
       image: require('@/assets/images/gta.png'),
       title: 'Grand Theft Auto VI: Ultimate Edition',
       description:
         'A história acompanha os protagonistas Lucia Caminos e Jason Duval, um casal de criminosos envolvidos em uma conspiração no estado fictício de Leonida.',
-      price: 'R$ 549,90',
+      price: 'US$ 99,90',
     },
     {
       image: require('@/assets/images/cod.png'),
       title: 'Call of Duty®: Black Ops II',
       description:
         'Jogue em uma Guerra Fria do século XXI em um futuro próximo, ambientado em 2025, onde armas e tecnologia avançada se uniram.',
-      price: 'R$ 87,45',
+      price: 'US$ 14,99',
     },
     {
       image: require('@/assets/images/aliens.png'),
       title: 'Aliens Roadside',
       description:
         'Jogo de simulação e gerenciamento onde você assume o papel de um alienígena disfarçado de humano.',
-      price: 'R$ 82,50',
+      price: 'US$ 14,49',
     },
     {
       image: require('@/assets/images/detroit.png'),
       title: 'Detroit: Become Human',
       description:
         'O mundo foi transformado pelo uso de androides criados pela empresa CyberLife. Máquinas começam a sentir emoções e viram os chamados "divergentes".',
-      price: 'R$ 71,50',
+      price: 'US$ 12,49',
     },
     {
       image: require('@/assets/images/forever_ago.png'),
