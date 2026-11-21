@@ -5,16 +5,19 @@ import {
   Text,
   StyleSheet,
   Image,
+  Pressable,
   Platform,
 } from 'react-native';
 
 import { Theme } from '@/constants/theme';
+import { useAuth } from '@/context/auth-context';
 import { useTheme } from '@/hooks/use-theme';
 
 export default function Jogar() {
   const isWeb = Platform.OS === 'web';
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const { user, signOut } = useAuth();
 
   const games = [
     {
@@ -40,6 +43,11 @@ export default function Jogar() {
       showsVerticalScrollIndicator={false}
     >
       <Text style={styles.title}>Jogar</Text>
+
+      <Text style={styles.greeting}>Olá, {user?.name}</Text>
+      <Pressable onPress={signOut}>
+        <Text style={styles.logout}>Sair</Text>
+      </Pressable>
 
       <Text style={styles.sectionTitle}>
         Jogados recentemente
@@ -116,7 +124,20 @@ const createStyles = (theme: Theme) =>
       fontSize: 32,
       fontWeight: 'bold',
       color: theme.text,
-      marginBottom: 30,
+      marginBottom: 10,
+    },
+
+    greeting: {
+      fontSize: 16,
+      color: theme.textSecondary,
+      marginBottom: 6,
+    },
+
+    logout: {
+      fontSize: 16,
+      color: theme.primary,
+      fontWeight: '600',
+      marginBottom: 25,
     },
 
     sectionTitle: {

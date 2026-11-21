@@ -1,10 +1,15 @@
 import { Stack } from 'expo-router';
 
-import { AuthProvider } from '@/context/auth-context';
+import { AuthProvider, useAuth } from '@/context/auth-context';
 import { useTheme } from '@/hooks/use-theme';
 
 function RootNavigator() {
   const theme = useTheme();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) return null;
+
+  const isLoggedIn = !!user;
 
   return (
     <Stack
@@ -12,7 +17,16 @@ function RootNavigator() {
         headerShown: false,
         contentStyle: { backgroundColor: theme.background },
       }}
-    />
+    >
+      <Stack.Protected guard={!isLoggedIn}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(auth)" />
+      </Stack.Protected>
+
+      <Stack.Protected guard={isLoggedIn}>
+        <Stack.Screen name="(tabs)" />
+      </Stack.Protected>
+    </Stack>
   );
 }
 

@@ -50,7 +50,6 @@ export default function Cadastro() {
     setLoading(true);
     try {
       await signUp(name, email, password);
-      router.replace('/jogar'); // provisório, sai quando protegermos as rotas
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Erro ao criar conta.');
       setLoading(false);
