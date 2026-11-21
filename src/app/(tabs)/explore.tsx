@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   ScrollView,
   View,
@@ -9,8 +10,13 @@ import {
   Platform,
 } from 'react-native';
 
+import { Theme } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
+
 export default function Explorar() {
   const isWeb = Platform.OS === 'web';
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
 
   const games = [
     require('@/assets/images/wolverine.png'),
@@ -32,7 +38,7 @@ export default function Explorar() {
       <TextInput
         style={styles.search}
         placeholder="Pesquisar"
-        placeholderTextColor="#cccccc"
+        placeholderTextColor={theme.textSecondary}
       />
 
       <View style={styles.buttons}>
@@ -72,112 +78,113 @@ export default function Explorar() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    padding: 20,
-    paddingTop: 40,
-  },
+const createStyles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background,
+      padding: 20,
+      paddingTop: 40,
+    },
 
-  webContent: {
-    maxWidth: 1200,
-    width: '100%',
-    alignSelf: 'center',
-    paddingHorizontal: 40,
-    paddingBottom: 40,
-  },
+    webContent: {
+      maxWidth: 1200,
+      width: '100%',
+      alignSelf: 'center',
+      paddingHorizontal: 40,
+      paddingBottom: 40,
+    },
 
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 20,
-  },
+    title: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: theme.text,
+      marginBottom: 20,
+    },
 
-  search: {
-    height: 45,
-    backgroundColor: '#111111',
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    color: '#ffffff',
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: '#333333',
-  },
+    search: {
+      height: 45,
+      backgroundColor: theme.surface,
+      borderRadius: 8,
+      paddingHorizontal: 15,
+      fontSize: 16,
+      color: theme.text,
+      marginBottom: 15,
+      borderWidth: 1,
+      borderColor: theme.border,
+    },
 
-  buttons: {
-    flexDirection: 'row',
-    marginBottom: 25,
-    gap: 10,
-  },
+    buttons: {
+      flexDirection: 'row',
+      marginBottom: 25,
+      gap: 10,
+    },
 
-  activeButton: {
-    flex: 1,
-    height: 42,
-    backgroundColor: '#00439c',
-    borderRadius: 21,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    activeButton: {
+      flex: 1,
+      height: 42,
+      backgroundColor: theme.primary,
+      borderRadius: 21,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
 
-  activeButtonText: {
-    color: '#ffffff',
-    fontSize: 15,
-    fontWeight: '600',
-  },
+    activeButtonText: {
+      color: theme.onPrimary,
+      fontSize: 15,
+      fontWeight: '600',
+    },
 
-  button: {
-    flex: 1,
-    height: 42,
-    backgroundColor: '#111111',
-    borderRadius: 21,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#333333',
-  },
+    button: {
+      flex: 1,
+      height: 42,
+      backgroundColor: theme.surface,
+      borderRadius: 21,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: theme.border,
+    },
 
-  buttonText: {
-    color: '#ffffff',
-    fontSize: 15,
-  },
+    buttonText: {
+      color: theme.text,
+      fontSize: 15,
+    },
 
-  sectionTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#ffffff',
-    marginBottom: 15,
-  },
+    sectionTitle: {
+      fontSize: 22,
+      fontWeight: '600',
+      color: theme.text,
+      marginBottom: 15,
+    },
 
-  gamesGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    paddingBottom: 20,
-  },
+    gamesGrid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      paddingBottom: 20,
+    },
 
-  webGamesGrid: {
-    gap: 20,
-  },
+    webGamesGrid: {
+      gap: 20,
+    },
 
-  gameCard: {
-    width: '48%',
-    backgroundColor: '#111111',
-    borderRadius: 10,
-    overflow: 'hidden',
-    marginBottom: 15,
-  },
+    gameCard: {
+      width: '48%',
+      backgroundColor: theme.surface,
+      borderRadius: 10,
+      overflow: 'hidden',
+      marginBottom: 15,
+    },
 
-  webGameCard: {
-    width: '31.5%',
-    marginBottom: 0,
-  },
+    webGameCard: {
+      width: '31.5%',
+      marginBottom: 0,
+    },
 
-  gameImage: {
-    width: '100%',
-    height: 190,
-    resizeMode: 'cover',
-  },
-});
+    gameImage: {
+      width: '100%',
+      height: 190,
+      resizeMode: 'cover',
+    },
+  });
