@@ -27,6 +27,7 @@ function RootNavigator() {
       <Stack.Protected guard={isLoggedIn}>
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="jogo/[id]" />
+        <Stack.Screen name="perfil" />
       </Stack.Protected>
     </Stack>
   );
