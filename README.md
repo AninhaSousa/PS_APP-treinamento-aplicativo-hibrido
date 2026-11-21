@@ -2,7 +2,7 @@
 
 Aplicativo híbrido feito com **Expo (React Native) e TypeScript** como projeto da disciplina de Aplicativos Híbridos. É uma recriação do PlayStation App, com ofertas reais de jogos de PC vindas da API da CheapShark.
 
-> **Autora:** _seu nome_ · **Disciplina:** _nome da disciplina_ · **Professor:** _nome_
+> **Autora:** Ana Mendes· **Disciplina:**Aplicativos híbridos · **Professor:** Márcio Garrido
 
 ## Como rodar
 
