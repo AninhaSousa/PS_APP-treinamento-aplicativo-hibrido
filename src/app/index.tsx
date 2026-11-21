@@ -52,6 +52,7 @@ export default function Inicio() {
               styles.secondaryButton,
               isWeb && styles.webButton,
             ]}
+            onPress={() => router.push('/cadastro')}
           >
             <Text style={styles.secondaryButtonText}>
               Criar conta
