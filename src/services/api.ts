@@ -27,6 +27,14 @@ export type GameDetails = {
   deals: GameDeal[];
 };
 
+export type GameSearchResult = {
+  gameID: string;
+  cheapest: string;
+  cheapestDealID: string;
+  external: string;
+  thumb: string;
+};
+
 export type Store = {
   storeID: string;
   storeName: string;
@@ -48,6 +56,13 @@ export function getDeals(pageSize = 20, signal?: AbortSignal) {
 
 export function getGameById(id: string, signal?: AbortSignal) {
   return get<GameDetails>(`/games?id=${encodeURIComponent(id)}`, signal);
+}
+
+export function searchGames(title: string, signal?: AbortSignal) {
+  return get<GameSearchResult[]>(
+    `/games?title=${encodeURIComponent(title)}&limit=20`,
+    signal,
+  );
 }
 
 export function getStores(signal?: AbortSignal) {
