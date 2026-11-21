@@ -42,7 +42,7 @@ export default function Inicio() {
               styles.button,
               isWeb && styles.webButton,
             ]}
-            onPress={() => router.replace('/jogar')}
+            onPress={() => router.push('/login')}
           >
             <Text style={styles.buttonText}>Iniciar sessão</Text>
           </Pressable>
