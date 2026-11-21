@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   ScrollView,
   View,
@@ -7,8 +8,13 @@ import {
   Platform,
 } from 'react-native';
 
+import { Theme } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
+
 export default function Jogar() {
   const isWeb = Platform.OS === 'web';
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
 
   const games = [
     {
@@ -89,104 +95,105 @@ export default function Jogar() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    padding: 20,
-    paddingTop: 40,
-  },
+const createStyles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background,
+      padding: 20,
+      paddingTop: 40,
+    },
 
-  webContent: {
-    maxWidth: 1200,
-    width: '100%',
-    alignSelf: 'center',
-    paddingHorizontal: 40,
-    paddingBottom: 40,
-  },
+    webContent: {
+      maxWidth: 1200,
+      width: '100%',
+      alignSelf: 'center',
+      paddingHorizontal: 40,
+      paddingBottom: 40,
+    },
 
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 30,
-  },
+    title: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: theme.text,
+      marginBottom: 30,
+    },
 
-  sectionTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#ffffff',
-    marginBottom: 20,
-  },
+    sectionTitle: {
+      fontSize: 22,
+      fontWeight: '600',
+      color: theme.text,
+      marginBottom: 20,
+    },
 
-  gamesContainer: {
-    alignItems: 'center',
-    paddingBottom: 20,
-  },
+    gamesContainer: {
+      alignItems: 'center',
+      paddingBottom: 20,
+    },
 
-  webGamesGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: 20,
-  },
+    webGamesGrid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      gap: 20,
+    },
 
-  gameCard: {
-    width: '82%',
-    backgroundColor: '#111111',
-    borderRadius: 12,
-    overflow: 'hidden',
-    marginBottom: 25,
-  },
+    gameCard: {
+      width: '82%',
+      backgroundColor: theme.surface,
+      borderRadius: 12,
+      overflow: 'hidden',
+      marginBottom: 25,
+    },
 
-  webGameCard: {
-    width: '48%',
-    marginBottom: 0,
-  },
+    webGameCard: {
+      width: '48%',
+      marginBottom: 0,
+    },
 
-  gameImage: {
-    width: '100%',
-    height: 180,
-    resizeMode: 'cover',
-  },
+    gameImage: {
+      width: '100%',
+      height: 180,
+      resizeMode: 'cover',
+    },
 
-  gameInfo: {
-    padding: 15,
-  },
+    gameInfo: {
+      padding: 15,
+    },
 
-  gameTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
+    gameTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: theme.text,
+    },
 
-  gameSubtitle: {
-    fontSize: 14,
-    color: '#cccccc',
-    marginTop: 5,
-  },
+    gameSubtitle: {
+      fontSize: 14,
+      color: theme.textSecondary,
+      marginTop: 5,
+    },
 
-  trophies: {
-    marginTop: 15,
-    paddingTop: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#F3C300',
-  },
+    trophies: {
+      marginTop: 15,
+      paddingTop: 12,
+      borderTopWidth: 1,
+      borderTopColor: theme.gold,
+    },
 
-  trophyLabel: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#ffffff',
-    marginBottom: 8,
-  },
+    trophyLabel: {
+      fontSize: 14,
+      fontWeight: '600',
+      color: theme.text,
+      marginBottom: 8,
+    },
 
-  trophyList: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
+    trophyList: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
 
-  trophy: {
-    fontSize: 14,
-    color: '#ffffff',
-  },
-});
+    trophy: {
+      fontSize: 14,
+      color: theme.text,
+    },
+  });
