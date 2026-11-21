@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   ScrollView,
   View,
@@ -9,13 +9,24 @@ import {
   Platform,
 } from 'react-native';
 
+import DealsList from '@/components/deals-list';
 import { Theme } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
+
+type TabKey = 'novidades' | 'colecoes' | 'ofertas' | 'assinaturas';
+
+const TABS: { key: TabKey; label: string }[] = [
+  { key: 'novidades', label: 'Novidades' },
+  { key: 'colecoes', label: 'Coleções' },
+  { key: 'ofertas', label: 'Ofertas' },
+  { key: 'assinaturas', label: 'Assinaturas' },
+];
 
 export default function Store() {
   const isWeb = Platform.OS === 'web';
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const [tab, setTab] = useState<TabKey>('novidades');
 
   const games = [
     {
@@ -62,65 +73,59 @@ export default function Store() {
     },
   ];
 
+  const currentLabel = TABS.find((t) => t.key === tab)?.label;
+
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={isWeb && styles.webContent}
-      showsVerticalScrollIndicator={false}
-    >
+    <View style={[styles.container, isWeb && styles.webContainer]}>
       <Text style={styles.title}>PS Store</Text>
 
       <View style={styles.tabs}>
-        <Pressable style={styles.activeTab}>
-          <Text style={styles.activeTabText}>Novidades</Text>
-        </Pressable>
-
-        <Pressable style={styles.tab}>
-          <Text style={styles.tabText}>Coleções</Text>
-        </Pressable>
-
-        <Pressable style={styles.tab}>
-          <Text style={styles.tabText}>Ofertas</Text>
-        </Pressable>
-
-        <Pressable style={styles.tab}>
-          <Text style={styles.tabText}>Assinaturas</Text>
-        </Pressable>
-      </View>
-
-      <Text style={styles.sectionTitle}>Novidades</Text>
-
-      <View style={isWeb && styles.webGamesGrid}>
-        {games.map((game, index) => (
-          <View
-            style={[
-              styles.card,
-              isWeb && styles.webCard,
-            ]}
-            key={index}
+        {TABS.map((t) => (
+          <Pressable
+            key={t.key}
+            style={t.key === tab ? styles.activeTab : styles.tab}
+            onPress={() => setTab(t.key)}
           >
-            <Image
-              source={game.image}
-              style={styles.gameImage}
-            />
-
-            <View style={styles.gameInfo}>
-              <Text style={styles.gameTitle}>
-                {game.title}
-              </Text>
-
-              <Text style={styles.description}>
-                {game.description}
-              </Text>
-
-              <Text style={styles.price}>
-                {game.price}
-              </Text>
-            </View>
-          </View>
+            <Text
+              style={t.key === tab ? styles.activeTabText : styles.tabText}
+            >
+              {t.label}
+            </Text>
+          </Pressable>
         ))}
       </View>
-    </ScrollView>
+
+      <Text style={styles.sectionTitle}>{currentLabel}</Text>
+
+      <View style={styles.body}>
+        {tab === 'novidades' && (
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={isWeb && styles.webGamesGrid}>
+              {games.map((game, index) => (
+                <View
+                  style={[styles.card, isWeb && styles.webCard]}
+                  key={index}
+                >
+                  <Image source={game.image} style={styles.gameImage} />
+
+                  <View style={styles.gameInfo}>
+                    <Text style={styles.gameTitle}>{game.title}</Text>
+                    <Text style={styles.description}>{game.description}</Text>
+                    <Text style={styles.price}>{game.price}</Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+          </ScrollView>
+        )}
+
+        {tab === 'ofertas' && <DealsList />}
+
+        {(tab === 'colecoes' || tab === 'assinaturas') && (
+          <Text style={styles.soon}>Em breve.</Text>
+        )}
+      </View>
+    </View>
   );
 }
 
@@ -133,12 +138,15 @@ const createStyles = (theme: Theme) =>
       paddingTop: 40,
     },
 
-    webContent: {
+    webContainer: {
       maxWidth: 1200,
       width: '100%',
       alignSelf: 'center',
       paddingHorizontal: 40,
-      paddingBottom: 40,
+    },
+
+    body: {
+      flex: 1,
     },
 
     title: {
@@ -191,6 +199,13 @@ const createStyles = (theme: Theme) =>
       fontWeight: '600',
       color: theme.text,
       marginBottom: 15,
+    },
+
+    soon: {
+      color: theme.textSecondary,
+      fontSize: 15,
+      textAlign: 'center',
+      marginTop: 30,
     },
 
     webGamesGrid: {
