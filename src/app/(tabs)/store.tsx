@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   ScrollView,
   View,
@@ -8,8 +9,13 @@ import {
   Platform,
 } from 'react-native';
 
+import { Theme } from '@/constants/theme';
+import { useTheme } from '@/hooks/use-theme';
+
 export default function Store() {
   const isWeb = Platform.OS === 'web';
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
 
   const games = [
     {
@@ -118,123 +124,124 @@ export default function Store() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    padding: 20,
-    paddingTop: 40,
-  },
+const createStyles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.background,
+      padding: 20,
+      paddingTop: 40,
+    },
 
-  webContent: {
-    maxWidth: 1200,
-    width: '100%',
-    alignSelf: 'center',
-    paddingHorizontal: 40,
-    paddingBottom: 40,
-  },
+    webContent: {
+      maxWidth: 1200,
+      width: '100%',
+      alignSelf: 'center',
+      paddingHorizontal: 40,
+      paddingBottom: 40,
+    },
 
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 20,
-  },
+    title: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: theme.text,
+      marginBottom: 20,
+    },
 
-  tabs: {
-    flexDirection: 'row',
-    marginBottom: 25,
-    gap: 8,
-  },
+    tabs: {
+      flexDirection: 'row',
+      marginBottom: 25,
+      gap: 8,
+    },
 
-  activeTab: {
-    flex: 1,
-    height: 42,
-    backgroundColor: '#00439c',
-    borderRadius: 21,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    activeTab: {
+      flex: 1,
+      height: 42,
+      backgroundColor: theme.primary,
+      borderRadius: 21,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
 
-  activeTabText: {
-    color: '#ffffff',
-    fontSize: 12,
-    fontWeight: '600',
-  },
+    activeTabText: {
+      color: theme.onPrimary,
+      fontSize: 12,
+      fontWeight: '600',
+    },
 
-  tab: {
-    flex: 1,
-    height: 42,
-    backgroundColor: '#111111',
-    borderRadius: 21,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#333333',
-  },
+    tab: {
+      flex: 1,
+      height: 42,
+      backgroundColor: theme.surface,
+      borderRadius: 21,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: theme.border,
+    },
 
-  tabText: {
-    color: '#ffffff',
-    fontSize: 12,
-    fontWeight: '600',
-  },
+    tabText: {
+      color: theme.text,
+      fontSize: 12,
+      fontWeight: '600',
+    },
 
-  sectionTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#ffffff',
-    marginBottom: 15,
-  },
+    sectionTitle: {
+      fontSize: 22,
+      fontWeight: '600',
+      color: theme.text,
+      marginBottom: 15,
+    },
 
-  webGamesGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: 20,
-  },
+    webGamesGrid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      gap: 20,
+    },
 
-  card: {
-    width: '82%',
-    alignSelf: 'center',
-    backgroundColor: '#111111',
-    borderRadius: 12,
-    overflow: 'hidden',
-    marginBottom: 20,
-  },
+    card: {
+      width: '82%',
+      alignSelf: 'center',
+      backgroundColor: theme.surface,
+      borderRadius: 12,
+      overflow: 'hidden',
+      marginBottom: 20,
+    },
 
-  webCard: {
-    width: '48%',
-    alignSelf: 'flex-start',
-    marginBottom: 0,
-  },
+    webCard: {
+      width: '48%',
+      alignSelf: 'flex-start',
+      marginBottom: 0,
+    },
 
-  gameImage: {
-    width: '100%',
-    height: 180,
-    resizeMode: 'cover',
-  },
+    gameImage: {
+      width: '100%',
+      height: 180,
+      resizeMode: 'cover',
+    },
 
-  gameInfo: {
-    padding: 15,
-  },
+    gameInfo: {
+      padding: 15,
+    },
 
-  gameTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 8,
-  },
+    gameTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: theme.text,
+      marginBottom: 8,
+    },
 
-  description: {
-    fontSize: 14,
-    color: '#cccccc',
-    lineHeight: 20,
-    marginBottom: 12,
-  },
+    description: {
+      fontSize: 14,
+      color: theme.textSecondary,
+      lineHeight: 20,
+      marginBottom: 12,
+    },
 
-  price: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
-});
+    price: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: theme.text,
+    },
+  });
