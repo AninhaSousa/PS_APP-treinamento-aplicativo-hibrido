@@ -8,9 +8,11 @@ import {
   Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 
 export default function Inicio() {
   const isWeb = Platform.OS === 'web';
+  const router = useRouter();
 
   return (
     <LinearGradient
@@ -40,6 +42,7 @@ export default function Inicio() {
               styles.button,
               isWeb && styles.webButton,
             ]}
+            onPress={() => router.replace('/jogar')}
           >
             <Text style={styles.buttonText}>Iniciar sessão</Text>
           </Pressable>
