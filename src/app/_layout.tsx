@@ -1,8 +1,9 @@
 import { Stack } from 'expo-router';
 
+import { AuthProvider } from '@/context/auth-context';
 import { useTheme } from '@/hooks/use-theme';
 
-export default function RootLayout() {
+function RootNavigator() {
   const theme = useTheme();
 
   return (
@@ -12,5 +13,13 @@ export default function RootLayout() {
         contentStyle: { backgroundColor: theme.background },
       }}
     />
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <AuthProvider>
+      <RootNavigator />
+    </AuthProvider>
   );
 }
