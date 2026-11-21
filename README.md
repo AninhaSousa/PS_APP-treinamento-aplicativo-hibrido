@@ -1,93 +1,81 @@
-# 🎮 PlayStation App — Projeto Acadêmico
+# PS App: recriação do aplicativo PlayStation
 
-Projeto desenvolvido para a disciplina de **Aplicativos Híbridos**, utilizando **React Native com Expo**.
+Aplicativo híbrido feito com **Expo (React Native) e TypeScript** como projeto da disciplina de Aplicativos Híbridos. É uma recriação do PlayStation App, com ofertas reais de jogos de PC vindas da API da CheapShark.
 
-A proposta do projeto é recriar a interface e algumas das principais funcionalidades do **PlayStation App**, utilizando como referência sua identidade visual e organização de telas.
+> **Autora:** _seu nome_ · **Disciplina:** _nome da disciplina_ · **Professor:** _nome_
 
-## 📱 Sobre o projeto
-
-O aplicativo apresenta uma interface inspirada no PlayStation App, com navegação entre diferentes áreas:
-
-* 🏠 **Início** — tela inicial do aplicativo.
-* 🎮 **Jogar** — jogos jogados recentemente e troféus.
-* 📰 **Notícias** — notícias e conteúdos do PlayStation.
-* 🛒 **PS Store** — apresentação de jogos e preços.
-* 📚 **Biblioteca** — jogos disponíveis na biblioteca.
-* 🔎 **Explorar** — pesquisa e visualização de jogos.
-
-O projeto também possui adaptação **responsiva para Web**, permitindo que a interface seja organizada de forma diferente em telas maiores sem alterar a experiência principal da versão mobile.
-
-## 🛠️ Tecnologias utilizadas
-
-* **React Native**
-* **Expo**
-* **Expo Router**
-* **TypeScript**
-* **JavaScript**
-* **CSS / StyleSheet**
-* **Git e GitHub**
-
-## 🎨 Identidade visual
-
-A interface utiliza principalmente as cores associadas ao PlayStation:
-
-* ⚪ Branco — `#FFFFFF`
-* ⚫ Preto — `#000000`
-* 🔵 Azul PlayStation — `#00439C`
-
-## 🚀 Como executar o projeto
-
-### 1. Clone o repositório
-
-```bash
-git clone https://github.com/AninhaSousa/PS_APP-treinamento-aplicativo-hibrido.git
-```
-
-### 2. Entre na pasta
-
-```bash
-cd PS_APP-treinamento-aplicativo-hibrido
-```
-
-### 3. Instale as dependências
+## Como rodar
 
 ```bash
 npm install
-```
-
-### 4. Inicie o projeto
-
-```bash
 npx expo start
 ```
 
-Após iniciar, é possível executar o projeto utilizando um dispositivo/emulador ou acessar a versão Web.
+No terminal do Expo, escolha abrir no celular (Expo Go), no emulador ou na web (`w`).
 
-## 📂 Estrutura principal
+## Telas (12)
 
-```text
+| # | Tela | Descrição |
+|---|---|---|
+| 1 | Boas-vindas | Entrada do app, com acesso ao login e ao cadastro |
+| 2 | Login | Entrada com e-mail e senha |
+| 3 | Cadastro | Criação de conta com validação dos campos |
+| 4 | Jogar | Jogos jogados recentemente e atalho para o perfil |
+| 5 | Notícias | Notícias do PS Blog |
+| 6 | PS Store | Abas de Novidades e Ofertas (dados reais da CheapShark) |
+| 7 | Biblioteca | Jogos da biblioteca |
+| 8 | Explorar | Busca de jogos na CheapShark |
+| 9 | Favoritos | Jogos favoritados pela conta |
+| 10 | Detalhe do jogo | Preço em cada loja e menor preço já registrado |
+| 11 | Perfil | Dados da conta e sair |
+| 12 | Configurações | Tema claro, escuro ou automático |
+
+## Conteúdo das aulas aplicado
+
+### Estilização com StyleSheet e Flexbox
+- Estilos com `StyleSheet` e layout com Flexbox em todas as telas.
+- Tema centralizado em `src/constants/theme.ts`, com modo claro e escuro (`useColorScheme`).
+
+### Navegação com Expo Router
+- Rotas por arquivo na pasta `src/app`.
+- `Stack` na raiz e `Tabs` para a barra de navegação.
+- Grupos de rotas `(auth)` e `(tabs)`.
+- Rota dinâmica `jogo/[id]`, com `push`, `replace` e `back`.
+- Telas protegidas com `Stack.Protected`: sem login, só aparecem boas-vindas, login e cadastro.
+
+### Consumo de API (CheapShark)
+- Camada `src/services/api.ts` com `fetch` e `async/await`.
+- Endpoints usados: `/deals` (ofertas), `/games` (busca e detalhe) e `/stores` (lojas).
+- `FlatList` com dados reais e os 4 estados da tela: carregando, erro (com botão para tentar de novo), vazio e sucesso.
+- Cancelamento de requisições com `AbortController` e busca com espera de 500 ms (debounce).
+- Links de ofertas pelo redirecionamento da CheapShark, como a documentação pede.
+
+### Armazenamento local
+- **SecureStore** (celular) para a conta e a sessão. Na web, que não tem SecureStore, usa o AsyncStorage.
+- **AsyncStorage** para favoritos (separados por conta) e para o tema escolhido.
+- Login persistente: o app reconhece a sessão ao abrir.
+
+## Estrutura
+
+```
 src/
 ├── app/
-│   ├── index.tsx
-│   ├── jogar.tsx
-│   ├── noticias.tsx
-│   ├── store.tsx
-│   ├── biblioteca.tsx
-│   └── explore.tsx
-│
-└── components/
-    └── app-tabs.tsx
-
-assets/
-└── images/
+│   ├── _layout.tsx          Stack raiz, providers e rotas protegidas
+│   ├── index.tsx            Boas-vindas
+│   ├── (auth)/              Login e cadastro
+│   ├── (tabs)/              Jogar, Notícias, PS Store, Biblioteca, Explorar, Favoritos
+│   ├── jogo/[id].tsx        Detalhe do jogo
+│   ├── perfil.tsx
+│   └── configuracoes.tsx
+├── components/              DealCard e DealsList
+├── context/                 Autenticação, favoritos e tema
+├── hooks/                   useDeals, useGame, useGameSearch, useTheme
+├── services/                api, auth, favorites, preferences, storage
+└── constants/theme.ts       Cores dos temas claro e escuro
 ```
 
-## 🎓 Objetivo acadêmico
+## Observações
 
-O projeto tem como objetivo aplicar os conhecimentos apresentados na disciplina de **Aplicativos Híbridos**, principalmente no desenvolvimento de interfaces utilizando React Native, navegação entre telas, organização de componentes e adaptação da aplicação para diferentes tamanhos de tela.
-
-## 👩‍💻 Autora
-
-**Ana Carolina**
-
-Projeto desenvolvido para fins acadêmicos.
+- O login é **local e didático**: a conta fica no aparelho e a senha é guardada sem criptografia. Em um app real, quem confere a senha é um servidor, e ela nunca fica no celular.
+- A CheapShark cobre apenas **lojas de PC**, em dólar. Por isso as ofertas não são da PlayStation Store.
+- As telas Jogar, Notícias, Biblioteca e PS Store → Novidades usam dados fixos no código.
