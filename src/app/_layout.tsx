@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 
 import { AuthProvider, useAuth } from '@/context/auth-context';
 import { FavoritesProvider } from '@/context/favorites-context';
+import { ThemeModeProvider } from '@/context/theme-context';
 import { useTheme } from '@/hooks/use-theme';
 
 function RootNavigator() {
@@ -28,6 +29,7 @@ function RootNavigator() {
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="jogo/[id]" />
         <Stack.Screen name="perfil" />
+        <Stack.Screen name="configuracoes" />
       </Stack.Protected>
     </Stack>
   );
@@ -35,10 +37,12 @@ function RootNavigator() {
 
 export default function RootLayout() {
   return (
-    <AuthProvider>
-      <FavoritesProvider>
-        <RootNavigator />
-      </FavoritesProvider>
-    </AuthProvider>
+    <ThemeModeProvider>
+      <AuthProvider>
+        <FavoritesProvider>
+          <RootNavigator />
+        </FavoritesProvider>
+      </AuthProvider>
+    </ThemeModeProvider>
   );
 }
